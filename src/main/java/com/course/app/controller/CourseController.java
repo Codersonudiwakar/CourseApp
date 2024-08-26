@@ -12,7 +12,6 @@ import java.util.List;
 @RequestMapping("/api/courses")
 @CrossOrigin("http://localhost:3000")
 public class CourseController {
-
     @Autowired
     private CourseService courseService;
 
@@ -28,6 +27,7 @@ public class CourseController {
 
     @GetMapping("/{id}")
     public Course getCourseById(@PathVariable Long id) {
+    	System.out.println("thi is not running");
         return courseService.getCourseById(id);
     }
 

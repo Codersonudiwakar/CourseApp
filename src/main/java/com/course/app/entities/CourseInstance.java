@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class CourseInstance {
@@ -18,13 +19,13 @@ public class CourseInstance {
     private int deliveryYear;
     private int semester;
 
+  
     @ManyToOne
-    @JoinColumn(name = "course_id", nullable = false)
+    @JoinColumn(name = "course_id", nullable = false)    
     private Course course;
 
 	public CourseInstance() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Long getId() {

@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.0.28
+    container_name: mysql-server
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: CourseApp
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - courseapp
+
+  backend:
+    image: sonukumardiwakar/courseapp-backend:latest
+    container_name: CourseApp-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-server:3306/CourseApp?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: password
+    networks:
+      - courseapp
+
+  frontend:
+    image: sonukumardiwakar/courseapp-frontend:latest
+    container_name: course-app-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    environment:
+      - REACT_APP_API_URL=http://backend:8080
+    networks:
+      - courseapp
+
+volumes:
+  mysql-data:
+
+networks:
+  courseapp:
+    driver: bridge

@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/instances")
 @CrossOrigin("http://localhost:3000")
-public class CourseInstanceController {
+public class CourseInstanceController{
 
     @Autowired
     private CourseInstanceService courseInstanceService;

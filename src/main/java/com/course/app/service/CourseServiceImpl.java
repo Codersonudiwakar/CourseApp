@@ -25,6 +25,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     public Course getCourseById(Long id) {
+    	System.out.println("thi is not running");
         return courseRepository.findById(id).orElseThrow(() -> new RuntimeException("Course not found"));
     }
 
