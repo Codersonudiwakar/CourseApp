@@ -8,6 +8,12 @@ Docker Compose: Install Docker Compose
 ## Run the Application
 Use Docker Compose to start the application:
 -- docker-compose up --build
+## step 1-Create A folder
+## step 2- copy docker-compose.yml in this folder and open with cmd
+## step 3- docker-compose up --build 
+now you can check
+http://localhost:3000/
+
 ## Project Details
 MySQL Database
 Container Name: mysql-server
